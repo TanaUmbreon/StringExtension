@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.3</TargetFramework>
+    <AssemblyName>StringExtension</AssemblyName>
+    <RootNamespace>StringExtension</RootNamespace>
+    <Authors>Tana</Authors>
+    <Company />
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <Copyright>Copyright (c) 2017 Tana</Copyright>
+    <RepositoryUrl>https://github.com/TanaUmbreon/StringExtension</RepositoryUrl>
+    <RepositoryType>GitHub</RepositoryType>
+    <PackageProjectUrl>https://github.com/TanaUmbreon/StringExtension</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/TanaUmbreon/StringExtension/blob/master/LICENSE</PackageLicenseUrl>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+
+</Project>
