@@ -7,7 +7,7 @@ namespace StringExtension.Tests
     public class StringExtensionTest
     {
         [Test]
-        public void MidB()
+        public void LenB()
         {
             Assert.AreEqual(0, "".LenB()); // 空文字
             Assert.AreEqual(4, "\t\r\n ".LenB()); // エスケープ文字
