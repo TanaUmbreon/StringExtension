@@ -82,5 +82,26 @@ namespace StringExtension.Tests
             Assert.AreEqual("チュウ", "ピカチュウ".MidB(4));
             Assert.AreEqual("sカチュウ", "ピカチュウ".MidB(1)); // 全角文字の途中(先頭)
         }
+
+        [Test]
+        public void LeftB()
+        {
+            // 例外が発生するパターン
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                string nullText = null;
+                nullText.LeftB(0);
+            });
+            Assert.Throws<ArgumentOutOfRangeException>(() => { "".LeftB(-1); });
+
+            // 長さがオーバー
+            Assert.AreEqual("", "".LeftB(1));
+            Assert.AreEqual("Poké Ball", "Poké Ball".LeftB(10)); // 長さオーバーは元の文字列を返すので"é"のまま
+            Assert.AreEqual("モンスターボール", "モンスターボール".LeftB(17));
+
+            Assert.AreEqual("Poke B", "Poké Ball".LeftB(6)); // "é"は"e"に化けてしまう？
+            Assert.AreEqual("モンス", "モンスターボール".LeftB(6));
+            Assert.AreEqual("モンス ", "モンスターボール".LeftB(7)); // 全角文字の途中
+        }
     }
 }

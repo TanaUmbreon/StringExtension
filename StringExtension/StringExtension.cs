@@ -91,5 +91,34 @@ namespace StringExtension
         }
 
         #endregion
+
+        #region LeftB
+
+        /// <summary>
+        /// 文字列を Shift-JIS として扱い、先頭からバイト単位で指定した長さまでの部分文字列を返します。
+        /// </summary>
+        /// <param name="value">文字列。</param>
+        /// <param name="length">バイト単位の長さ。</param>
+        /// <returns>
+        /// 先頭から長さ <paramref name="length"/> を抽出することによって得られる部分文字列。
+        /// <paramref name="length"/> が文字列を超えている場合は元と同等の文字列。
+        /// </returns>
+        public static string LeftB(this string value, int length)
+        {
+            if (value == null) { throw new ArgumentNullException(nameof(value)); }
+            if (length < 0) { throw new ArgumentOutOfRangeException(nameof(length), "長さを 0 未満にすることはできません。"); }
+
+            // 長さが文字列の長さを超えた場合は元の文字列そのものなのですぐに返す
+            var bytes = ShiftJis.GetBytes(value);
+            if (bytes.Length <= length) { return value; }
+
+            // 末尾にある全角文字の途中を抽出すると長さがずれることがある。
+            // その場合は末尾を切り詰めて半角スペースで埋める(Shift-JIS前提で決め打ち)
+            var result = ShiftJis.GetString(bytes, 0, length);
+            if (ShiftJis.GetByteCount(result) == length) { return result; }
+            return ShiftJis.GetString(bytes, 0, length - 1) + ' ';
+        }
+
+        #endregion
     }
 }
