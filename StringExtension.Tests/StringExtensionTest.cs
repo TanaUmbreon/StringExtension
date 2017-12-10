@@ -103,5 +103,32 @@ namespace StringExtension.Tests
             Assert.AreEqual("モンス", "モンスターボール".LeftB(6));
             Assert.AreEqual("モンス ", "モンスターボール".LeftB(7)); // 全角文字の途中
         }
+
+        [Test]
+        public void RightB()
+        {
+            // 例外が発生するパターン
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                string nullText = null;
+                nullText.RightB(0);
+            });
+            Assert.Throws<ArgumentOutOfRangeException>(() => { "".RightB(-1); });
+
+            // 長さがゼロ
+            Assert.AreEqual("", "".RightB(0));
+            Assert.AreEqual("", "Poké Ball".RightB(0));
+            Assert.AreEqual("", "モンスターボール".RightB(0));
+
+            // 長さがオーバー
+            Assert.AreEqual("", "".RightB(1));
+            Assert.AreEqual("Poké Ball", "Poké Ball".RightB(10));
+            Assert.AreEqual("モンスターボール", "モンスターボール".RightB(17));
+
+            // 文字の範囲内で取得
+            Assert.AreEqual("e Ball", "Poké Ball".RightB(6));
+            Assert.AreEqual("ボール", "モンスターボール".RightB(6));
+            Assert.AreEqual("[ボール", "モンスターボール".RightB(7)); // 全角文字の途中
+        }
     }
 }

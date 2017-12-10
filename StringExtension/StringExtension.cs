@@ -98,7 +98,7 @@ namespace StringExtension
         /// 文字列を Shift-JIS として扱い、先頭からバイト単位で指定した長さまでの部分文字列を返します。
         /// </summary>
         /// <param name="value">文字列。</param>
-        /// <param name="length">バイト単位の長さ。</param>
+        /// <param name="length">文字列の先頭から始まるバイト単位の長さ。</param>
         /// <returns>
         /// 先頭から長さ <paramref name="length"/> を抽出することによって得られる部分文字列。
         /// <paramref name="length"/> が文字列を超えている場合は元と同等の文字列。
@@ -117,6 +117,34 @@ namespace StringExtension
             var result = ShiftJis.GetString(bytes, 0, length);
             if (ShiftJis.GetByteCount(result) == length) { return result; }
             return ShiftJis.GetString(bytes, 0, length - 1) + ' ';
+        }
+
+        #endregion
+
+        #region RightB
+
+        /// <summary>
+        /// 文字列を Shift-JIS として扱い、末尾からバイト単位で指定した長さまでの部分文字列を返します。
+        /// </summary>
+        /// <param name="value">文字列。</param>
+        /// <param name="length">文字列の末尾から始まるバイト単位の長さ。</param>
+        /// <returns>
+        /// 末尾から長さ <paramref name="length"/> を抽出することによって得られる部分文字列。
+        /// <paramref name="length"/> が文字列を超えている場合は元と同等の文字列。
+        /// </returns>
+        public static string RightB(this string value, int length)
+        {
+            if (value == null) { throw new ArgumentNullException(nameof(value)); }
+            if (length < 0) { throw new ArgumentOutOfRangeException(nameof(length), "長さを 0 未満にすることはできません。"); }
+
+            // 空文字が確定している場合は無駄な処理をさせないようすぐ返す
+            if (length == 0) { return ""; }
+
+            // 長さが文字列の長さを超えた場合は元の文字列そのものなのですぐに返す
+            var bytes = ShiftJis.GetBytes(value);
+            if (bytes.Length <= length) { return value; }
+
+            return ShiftJis.GetString(bytes, bytes.Length - length, length);
         }
 
         #endregion
