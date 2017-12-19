@@ -130,5 +130,29 @@ namespace StringExtension.Tests
             Assert.AreEqual("ボール", "モンスターボール".RightB(6));
             Assert.AreEqual("[ボール", "モンスターボール".RightB(7)); // 全角文字の途中
         }
+
+        [Test]
+        public void PadLeftB()
+        {
+            // 例外パターン
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                string nullText = null;
+                nullText.PadLeftB(0, ' ');
+            });
+            Assert.Throws<ArgumentOutOfRangeException>(() => { "".PadLeftB(-1, '0'); });
+
+            // 元の文字列以下の長さ
+            Assert.AreEqual("", "".PadLeftB(0, '0'));
+            Assert.AreEqual("55", "55".PadLeftB(2, '0'));
+            Assert.AreEqual("５５", "５５".PadLeftB(4, '0'));
+
+            // 元の文字列より大きい長さ
+            Assert.AreEqual("00000", "0".PadLeftB(5, '0'));
+            Assert.AreEqual("00050", "50".PadLeftB(5, '0'));
+            Assert.AreEqual("0４５", "４５".PadLeftB(5, '0'));
+            Assert.AreEqual("００６５", "６５".PadLeftB(8, '０')); // 全角でパディング
+            Assert.AreEqual(" ０５５", "５５".PadLeftB(7, '０')); // 全角の途中
+        }
     }
 }
