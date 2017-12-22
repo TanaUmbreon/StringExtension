@@ -195,5 +195,32 @@ namespace StringExtension
         public static string PadLeftB(this string value, int totalWidth) => PadLeftB(value, totalWidth, ' ');
 
         #endregion
+
+        #region PadRightB
+
+        /// <summary>
+        /// 文字列を Shift-JIS として扱い、バイト単位で指定した文字列の長さになるまで、指定した文字を右側に埋め込みます。
+        /// </summary>
+        /// <param name="value">文字列。</param>
+        /// <param name="totalWidth">結果として生成される、バイト単位の文字列の長さ。</param>
+        /// <param name="paddingChar">埋め込み文字。</param>
+        /// <returns>
+        /// <paramref name="totalWidth"/> の長さになるまで右側に
+        /// <paramref name="paddingChar"/> の文字が埋め込まれ、左寄せされた文字列。
+        /// <paramref name="totalWidth"/> が元の文字列の長さより短い場合は、元の文字列と等しい文字列。
+        /// </returns>
+        public static string PadRightB(this string value, int totalWidth, char paddingChar)
+        {
+            if (value == null) { throw new ArgumentNullException(nameof(value)); }
+            if (totalWidth < 0) { throw new ArgumentOutOfRangeException(nameof(totalWidth), "長さを 0 未満にすることはできません。"); }
+
+            // 指定した長さが元の文字列の長さ以下になる場合は元の文字列そのものなのですぐに返す
+            var bytes = ShiftJis.GetBytes(value);
+            if (totalWidth <= bytes.Length) { return value; }
+
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }

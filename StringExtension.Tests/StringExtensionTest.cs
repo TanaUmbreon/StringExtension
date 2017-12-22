@@ -131,6 +131,9 @@ namespace StringExtension.Tests
             Assert.AreEqual("[ボール", "モンスターボール".RightB(7)); // 全角文字の途中
         }
 
+        /// <summary>
+        /// PadLeftB(string, int, char)
+        /// </summary>
         [Test]
         public void PadLeftB1()
         {
@@ -155,6 +158,9 @@ namespace StringExtension.Tests
             Assert.AreEqual(" ０５５", "５５".PadLeftB(7, '０')); // 全角の途中
         }
 
+        /// <summary>
+        /// PadLeftB(string, int)
+        /// </summary>
         [Test]
         public void PadLeftB2()
         {
@@ -177,6 +183,33 @@ namespace StringExtension.Tests
             Assert.AreEqual(" ４５", "４５".PadLeftB(5));
             Assert.AreEqual("    ６５", "６５".PadLeftB(8));
             Assert.AreEqual("   ５５", "５５".PadLeftB(7));
+        }
+
+        /// <summary>
+        /// PadRightB(string, int, char)
+        /// </summary>
+        [Test]
+        public void PadRightB1()
+        {
+            // 例外パターン
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                string nullText = null;
+                nullText.PadRightB(0, ' ');
+            });
+            Assert.Throws<ArgumentOutOfRangeException>(() => { "".PadRightB(-1, '0'); });
+
+            // 元の文字列以下の長さ
+            Assert.AreEqual("", "".PadRightB(0, '0'));
+            Assert.AreEqual("55", "55".PadRightB(2, '0'));
+            Assert.AreEqual("５５", "５５".PadRightB(4, '0'));
+
+            // 元の文字列より大きい長さ
+            Assert.AreEqual("00000", "0".PadRightB(5, '0'));
+            Assert.AreEqual("50000", "50".PadRightB(5, '0'));
+            Assert.AreEqual("４５0", "４５".PadRightB(5, '0'));
+            Assert.AreEqual("６５００", "６５".PadRightB(8, '０')); // 全角でパディング
+            Assert.AreEqual("５５０ ", "５５".PadRightB(7, '０')); // 全角の途中
         }
     }
 }
