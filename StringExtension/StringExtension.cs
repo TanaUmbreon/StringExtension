@@ -179,8 +179,7 @@ namespace StringExtension
 
             // 完全に埋め込むとこができない場合は代わりに半角スペースで残りを埋め込む
             // (paddingCharに全角文字を指定すると起こりえる)
-            if (modLength != 0) { return new string(' ', modLength) + result; }
-            return result;
+            return modLength == 0 ? result : new string(' ', modLength) + result;
         }
 
         /// <summary>
@@ -214,12 +213,27 @@ namespace StringExtension
             if (value == null) { throw new ArgumentNullException(nameof(value)); }
             if (totalWidth < 0) { throw new ArgumentOutOfRangeException(nameof(totalWidth), "長さを 0 未満にすることはできません。"); }
 
-            // 指定した長さが元の文字列の長さ以下になる場合は元の文字列そのものなのですぐに返す
             var bytes = ShiftJis.GetBytes(value);
             if (totalWidth <= bytes.Length) { return value; }
 
-            throw new NotImplementedException();
+            int paddingCharLength = ShiftJis.GetByteCount(paddingChar.ToString());
+            int toPaddingLength = totalWidth - bytes.Length;
+            int modLength = toPaddingLength % paddingCharLength;
+            string result = value + new string(paddingChar, toPaddingLength / paddingCharLength);
+
+            return modLength == 0 ? result : result + new string(' ', modLength);
         }
+
+        /// <summary>
+        /// 文字列を Shift-JIS として扱い、バイト単位で指定した文字列の長さになるまで、右側に空白を埋め込みます。
+        /// </summary>
+        /// <param name="value">文字列。</param>
+        /// <param name="totalWidth">結果として生成される、バイト単位の文字列の長さ。</param>
+        /// <returns>
+        /// <paramref name="totalWidth"/> の長さになるまで右側に空白が埋め込まれ、左寄せされた文字列。
+        /// <paramref name="totalWidth"/> が元の文字列の長さより短い場合は、元の文字列と等しい文字列。
+        /// </returns>
+        public static string PadRightB(this string value, int totalWidth) => PadRightB(value, totalWidth, ' ');
 
         #endregion
     }

@@ -211,5 +211,32 @@ namespace StringExtension.Tests
             Assert.AreEqual("６５００", "６５".PadRightB(8, '０')); // 全角でパディング
             Assert.AreEqual("５５０ ", "５５".PadRightB(7, '０')); // 全角の途中
         }
+
+        /// <summary>
+        /// PadRightB(string, int)
+        /// </summary>
+        [Test]
+        public void PadRightB2()
+        {
+            // 例外パターン
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                string nullText = null;
+                nullText.PadRightB(0);
+            });
+            Assert.Throws<ArgumentOutOfRangeException>(() => { "".PadRightB(-1); });
+
+            // 元の文字列以下の長さ
+            Assert.AreEqual("", "".PadRightB(0));
+            Assert.AreEqual("55", "55".PadRightB(2));
+            Assert.AreEqual("５５", "５５".PadRightB(4));
+
+            // 元の文字列より大きい長さ
+            Assert.AreEqual("0    ", "0".PadRightB(5));
+            Assert.AreEqual("50   ", "50".PadRightB(5));
+            Assert.AreEqual("４５ ", "４５".PadRightB(5));
+            Assert.AreEqual("６５    ", "６５".PadRightB(8));
+            Assert.AreEqual("５５   ", "５５".PadRightB(7));
+        }
     }
 }
