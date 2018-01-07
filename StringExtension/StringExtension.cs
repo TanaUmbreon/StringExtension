@@ -271,5 +271,40 @@ namespace StringExtension
         public static string FixLeftB(this string value, int totalWidth) => FixLeftB(value, totalWidth, ' ');
 
         #endregion
+
+        #region FixRightB
+
+        /// <summary>
+        /// 文字列を Shift-JIS として扱い、左端からバイト単位で指定した文字列の長さまでの固定された文字列を返します。
+        /// 指定した長さより短い場合は、指定した文字を右側に埋め込みます。
+        /// </summary>
+        /// <param name="value">文字列。</param>
+        /// <param name="totalWidth">結果として生成される、バイト単位の文字列の長さ。</param>
+        /// <param name="paddingChar">埋め込み文字。</param>
+        /// <returns>
+        /// <paramref name="totalWidth"/> の長さになるまで右側に
+        /// <paramref name="paddingChar"/> の文字が埋め込まれ、左寄せされた文字列。
+        /// <paramref name="totalWidth"/> が元の文字列の長さより短い場合は、元の文字列の左端から
+        /// <paramref name="totalWidth"/> までの部分文字列。
+        /// </returns>
+        public static string FixRightB(this string value, int totalWidth, char paddingChar)
+        {
+            return value.PadRightB(totalWidth, paddingChar).LeftB(totalWidth);
+        }
+
+        /// <summary>
+        /// 文字列を Shift-JIS として扱い、左端からバイト単位で指定した文字列の長さまでの固定された文字列を返します。
+        /// 指定した長さより短い場合は、右側に空白を埋め込みます。
+        /// </summary>
+        /// <param name="value">文字列。</param>
+        /// <param name="totalWidth">結果として生成される、バイト単位の文字列の長さ。</param>
+        /// <returns>
+        /// <paramref name="totalWidth"/> の長さになるまで右側に空白が埋め込まれ、左寄せされた文字列。
+        /// <paramref name="totalWidth"/> が元の文字列の長さより短い場合は、元の文字列の左端から
+        /// <paramref name="totalWidth"/> までの部分文字列。
+        /// </returns>
+        public static string FixRightB(this string value, int totalWidth) => FixRightB(value, totalWidth, ' ');
+
+        #endregion
     }
 }

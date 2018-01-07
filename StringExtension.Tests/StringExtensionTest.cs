@@ -295,5 +295,62 @@ namespace StringExtension.Tests
             Assert.AreEqual("   Hoo!", "Hoo!".FixLeftB(7));
             Assert.AreEqual("    もふう！", "もふう！".FixLeftB(12));
         }
+
+        /// <summary>
+        /// FixRightB(string, int, char)
+        /// </summary>
+        [Test]
+        public void FixRightB1()
+        {
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                string nullText = null;
+                nullText.FixRightB(0, ' ');
+            });
+            Assert.Throws<ArgumentOutOfRangeException>(() => { "".FixRightB(-1, '0'); });
+
+            // 元の文字列と同じ長さだとそのまま
+            Assert.AreEqual("", "".FixRightB(0, ' '));
+            Assert.AreEqual("Mudkip is so CUUUUTE!", "Mudkip is so CUUUUTE!".FixRightB(21, ' '));
+            Assert.AreEqual("ミズゴロウかわえぇぇ！", "ミズゴロウかわえぇぇ！".FixRightB(22, ' '));
+
+            // 元の文字列未満の長さ
+            Assert.AreEqual("Bwar", "Bwark?".FixRightB(4, ' '));
+            Assert.AreEqual("あしゃま", "あしゃま？".FixRightB(8, ' '));
+            Assert.AreEqual("あしゃ ", "あしゃま？".FixRightB(7, ' ')); // 全角の途中
+
+            // 元の文字列より大きい長さ
+            Assert.AreEqual("Hoo!!!!", "Hoo!".FixRightB(7, '!'));
+            Assert.AreEqual("もふう！！！", "もふう！".FixRightB(12, '！'));
+            Assert.AreEqual("もふう！！ ", "もふう！".FixRightB(11, '！')); // 全角の途中
+        }
+
+        /// <summary>
+        /// FixRightB(string, int)
+        /// </summary>
+        [Test]
+        public void FixRightB2()
+        {
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                string nullText = null;
+                nullText.FixRightB(0);
+            });
+            Assert.Throws<ArgumentOutOfRangeException>(() => { "".FixRightB(-1); });
+
+            // 元の文字列と同じ長さだとそのまま
+            Assert.AreEqual("", "".FixRightB(0));
+            Assert.AreEqual("Mudkip is so CUUUUTE!", "Mudkip is so CUUUUTE!".FixRightB(21));
+            Assert.AreEqual("ミズゴロウかわえぇぇ！", "ミズゴロウかわえぇぇ！".FixRightB(22));
+
+            // 元の文字列未満の長さ
+            Assert.AreEqual("Bwar", "Bwark?".FixRightB(4));
+            Assert.AreEqual("あしゃま", "あしゃま？".FixRightB(8));
+            Assert.AreEqual("あしゃ ", "あしゃま？".FixRightB(7)); // 全角の途中
+
+            // 元の文字列より大きい長さ
+            Assert.AreEqual("Hoo!   ", "Hoo!".FixRightB(7));
+            Assert.AreEqual("もふう！    ", "もふう！".FixRightB(12));
+        }
     }
 }
