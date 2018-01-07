@@ -99,7 +99,7 @@ namespace StringExtension.Tests
             Assert.AreEqual("Poké Ball", "Poké Ball".LeftB(10)); // 長さオーバーは元の文字列を返すので"é"のまま
             Assert.AreEqual("モンスターボール", "モンスターボール".LeftB(17));
 
-            Assert.AreEqual("Poke B", "Poké Ball".LeftB(6)); // "é"は"e"に化けてしまう？
+            Assert.AreEqual("Poke B", "Poké Ball".LeftB(6)); // "é"は"e"に化けてしまう(Shift-JISにéがないため?)
             Assert.AreEqual("モンス", "モンスターボール".LeftB(6));
             Assert.AreEqual("モンス ", "モンスターボール".LeftB(7)); // 全角文字の途中
         }
@@ -237,6 +237,63 @@ namespace StringExtension.Tests
             Assert.AreEqual("４５ ", "４５".PadRightB(5));
             Assert.AreEqual("６５    ", "６５".PadRightB(8));
             Assert.AreEqual("５５   ", "５５".PadRightB(7));
+        }
+
+        /// <summary>
+        /// FixLeftB(string, int, char)
+        /// </summary>
+        [Test]
+        public void FixLeftB1()
+        {
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                string nullText = null;
+                nullText.FixLeftB(0, ' ');
+            });
+            Assert.Throws<ArgumentOutOfRangeException>(() => { "".FixLeftB(-1, '0'); });
+
+            // 元の文字列と同じ長さだとそのまま
+            Assert.AreEqual("", "".FixLeftB(0, ' '));
+            Assert.AreEqual("Mudkip is so CUUUUTE!", "Mudkip is so CUUUUTE!".FixLeftB(21, ' '));
+            Assert.AreEqual("ミズゴロウかわえぇぇ！", "ミズゴロウかわえぇぇ！".FixLeftB(22, ' '));
+
+            // 元の文字列未満の長さ
+            Assert.AreEqual("ark?", "Bwark?".FixLeftB(4, ' '));
+            Assert.AreEqual("しゃま？", "あしゃま？".FixLeftB(8, ' '));
+            Assert.AreEqual("ｵゃま？", "あしゃま？".FixLeftB(7, ' ')); // 全角の途中
+
+            // 元の文字列より大きい長さ
+            Assert.AreEqual("YaaaHoo!", "Y" + "Hoo!".FixLeftB(7, 'a'));
+            Assert.AreEqual("もももふう！", "もふう！".FixLeftB(12, 'も'));
+            Assert.AreEqual(" ももふう！", "もふう！".FixLeftB(11, 'も')); // 全角の途中
+        }
+
+        /// <summary>
+        /// FixLeftB(string, int)
+        /// </summary>
+        [Test]
+        public void FixLeftB2()
+        {
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                string nullText = null;
+                nullText.FixLeftB(0);
+            });
+            Assert.Throws<ArgumentOutOfRangeException>(() => { "".FixLeftB(-1); });
+
+            // 元の文字列と同じ長さだとそのまま
+            Assert.AreEqual("", "".FixLeftB(0));
+            Assert.AreEqual("Mudkip is so CUUUUTE!", "Mudkip is so CUUUUTE!".FixLeftB(21));
+            Assert.AreEqual("ミズゴロウかわえぇぇ！", "ミズゴロウかわえぇぇ！".FixLeftB(22));
+
+            // 元の文字列未満の長さ
+            Assert.AreEqual("ark?", "Bwark?".FixLeftB(4));
+            Assert.AreEqual("しゃま？", "あしゃま？".FixLeftB(8));
+            Assert.AreEqual("ｵゃま？", "あしゃま？".FixLeftB(7)); // 全角の途中
+
+            // 元の文字列より大きい長さ
+            Assert.AreEqual("   Hoo!", "Hoo!".FixLeftB(7));
+            Assert.AreEqual("    もふう！", "もふう！".FixLeftB(12));
         }
     }
 }
