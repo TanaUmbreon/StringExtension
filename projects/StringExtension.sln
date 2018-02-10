@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringExtension", "StringExtension\StringExtension.csproj", "{D7A0E857-BAFE-4FDA-9F8C-05130768654C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringExtension.NetStd13", "StringExtension.NetStd13\StringExtension.NetStd13.csproj", "{D7A0E857-BAFE-4FDA-9F8C-05130768654C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringExtension.Tests", "StringExtension.Tests\StringExtension.Tests.csproj", "{EC5F1F94-5ED7-4336-A891-1309A5599CA5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringExtension.NetStd13.Tests", "StringExtension.NetStd13.Tests\StringExtension.NetStd13.Tests.csproj", "{EC5F1F94-5ED7-4336-A891-1309A5599CA5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

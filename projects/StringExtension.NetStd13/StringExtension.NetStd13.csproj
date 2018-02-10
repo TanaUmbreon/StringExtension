@@ -24,4 +24,8 @@
     <DocumentationFile>bin\Debug\netstandard1.3\StringExtension.xml</DocumentationFile>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Include="..\..\src\StringExtension.cs" Link="StringExtension.cs" />
+  </ItemGroup>
+
 </Project>
