@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringExtension.NetStd13", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringExtension.NetStd13.Tests", "StringExtension.NetStd13.Tests\StringExtension.NetStd13.Tests.csproj", "{EC5F1F94-5ED7-4336-A891-1309A5599CA5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringExtension.Net35", "StringExtension.Net35\StringExtension.Net35.csproj", "{61F15B4F-9CE5-447B-9000-9FA7B061EB05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringExtension.Net35.Tests", "StringExtension.Net35.Tests\StringExtension.Net35.Tests.csproj", "{C9F2389A-C762-4577-A628-164F116FCB24}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{EC5F1F94-5ED7-4336-A891-1309A5599CA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC5F1F94-5ED7-4336-A891-1309A5599CA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC5F1F94-5ED7-4336-A891-1309A5599CA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61F15B4F-9CE5-447B-9000-9FA7B061EB05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61F15B4F-9CE5-447B-9000-9FA7B061EB05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61F15B4F-9CE5-447B-9000-9FA7B061EB05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61F15B4F-9CE5-447B-9000-9FA7B061EB05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9F2389A-C762-4577-A628-164F116FCB24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9F2389A-C762-4577-A628-164F116FCB24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9F2389A-C762-4577-A628-164F116FCB24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9F2389A-C762-4577-A628-164F116FCB24}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
