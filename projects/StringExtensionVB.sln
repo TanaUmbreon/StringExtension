@@ -7,6 +7,10 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "StringExtensionVB.NetStd13"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringExtensionVB.NetStd13.Tests", "StringExtensionVB.NetStd13.Tests\StringExtensionVB.NetStd13.Tests.csproj", "{66466A54-FA40-4296-8946-035CF8158FF6}"
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "StringExtensionVB.Net35", "StringExtensionVB.Net35\StringExtensionVB.Net35.vbproj", "{3A97B0E7-C5CC-47AB-887E-988E6E23E56F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringExtensionVB.Net35.Tests", "StringExtensionVB.Net35.Tests\StringExtensionVB.Net35.Tests.csproj", "{35CD7733-7EEB-48BF-A37E-8BBC28779F77}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{66466A54-FA40-4296-8946-035CF8158FF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66466A54-FA40-4296-8946-035CF8158FF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66466A54-FA40-4296-8946-035CF8158FF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A97B0E7-C5CC-47AB-887E-988E6E23E56F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A97B0E7-C5CC-47AB-887E-988E6E23E56F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A97B0E7-C5CC-47AB-887E-988E6E23E56F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A97B0E7-C5CC-47AB-887E-988E6E23E56F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35CD7733-7EEB-48BF-A37E-8BBC28779F77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35CD7733-7EEB-48BF-A37E-8BBC28779F77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35CD7733-7EEB-48BF-A37E-8BBC28779F77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35CD7733-7EEB-48BF-A37E-8BBC28779F77}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
