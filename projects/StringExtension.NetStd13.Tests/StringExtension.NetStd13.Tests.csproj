@@ -7,8 +7,8 @@
     <ProjectGuid>{EC5F1F94-5ED7-4336-A891-1309A5599CA5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>StringExtension.NetStd13.Tests</RootNamespace>
-    <AssemblyName>StringExtension.NetStd13.Tests</AssemblyName>
+    <RootNamespace>StringExtension.Tests</RootNamespace>
+    <AssemblyName>StringExtension.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

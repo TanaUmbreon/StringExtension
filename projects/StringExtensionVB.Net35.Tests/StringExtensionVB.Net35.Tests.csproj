@@ -7,8 +7,8 @@
     <ProjectGuid>{35CD7733-7EEB-48BF-A37E-8BBC28779F77}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>StringExtensionVB.Net35.Tests</RootNamespace>
-    <AssemblyName>StringExtensionVB.Net35.Tests</AssemblyName>
+    <RootNamespace>StringExtension.Tests</RootNamespace>
+    <AssemblyName>StringExtension.Tests</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
