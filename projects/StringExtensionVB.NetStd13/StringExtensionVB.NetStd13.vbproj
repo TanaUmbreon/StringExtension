@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.3</TargetFramework>
+    <AssemblyName>StringExtension</AssemblyName>
+    <RootNamespace>StringExtension</RootNamespace>
+    <Version>1.0.1</Version>
+    <Authors>Tana</Authors>
+    <Company>Tana</Company>
+    <Description>StringExtension for .NET Standard 1.3</Description>
+    <Copyright>Copyright (c) 2017 Tana</Copyright>
+    <PackageLicenseUrl>https://github.com/TanaUmbreon/StringExtension/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/TanaUmbreon/StringExtension</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/TanaUmbreon/StringExtension</RepositoryUrl>
+    <RepositoryType>GitHub</RepositoryType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>StringExtension.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>StringExtension.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\src\StringExtension.vb" Link="StringExtension.vb" />
+  </ItemGroup>
+
+</Project>
