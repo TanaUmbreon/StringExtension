@@ -27,7 +27,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Include="..\..\src\StringExtension.cs" Link="StringExtension.cs" />
   </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command=":: .NET Frameworkのプロジェクトが同じフォルダーにあるとビルド警告が出る問題の対策&#xD;&#xA;set target=$(ProjectDir)obj\project.assets.json&#xD;&#xA;if exist &quot;%target%&quot; (&#xD;&#xA;del /q &quot;%target%&quot;&#xD;&#xA;)&#xD;&#xA;&#xD;&#xA;:: リリースビルドの場合は配布用のバイナリとしてコピーする&#xD;&#xA;:: $(TargetDir)は末尾に\がありrobocopyでエラーとなるのでトリムする&#xD;&#xA;set copyFrom=$(TargetDir)&#xD;&#xA;set copyFrom=%copyFrom:~0,-1%&#xD;&#xA;set copyTo=$(SolutionDir)..\StringExtension-bin-x.x.x\NetStandard 1.3&#xD;&#xA;if &quot;$(ConfigurationName)&quot; == &quot;Release&quot; (&#xD;&#xA;robocopy &quot;%copyFrom%&quot; &quot;%copyTo%&quot; /mir /r:1 /w:1 /xf *.tmp&#xD;&#xA;)&#xD;&#xA;:: robocopyはコード7以下だと正常終了だがVSでエラー判定となるので強制的にコード0にする&#xD;&#xA;exit /b 0&#xD;&#xA;" />
+  </Target>
 
 </Project>

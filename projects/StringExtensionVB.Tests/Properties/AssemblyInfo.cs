@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // アセンブリに関する一般情報は以下の属性セットをとおして制御されます。
 // アセンブリに関連付けられている情報を変更するには、
 // これらの属性値を変更してください。
-[assembly: AssemblyTitle("StringExtension.NetStd13.Tests")]
+[assembly: AssemblyTitle("StringExtension.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("StringExtension.NetStd13.Tests")]
+[assembly: AssemblyProduct("StringExtension.Tests")]
 [assembly: AssemblyCopyright("Copyright © 2017 Tana")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // このプロジェクトが COM に公開される場合、次の GUID が typelib の ID になります
-[assembly: Guid("ec5f1f94-5ed7-4336-a891-1309a5599ca5")]
+[assembly: Guid("35cd7733-7eeb-48bf-a37e-8bbc28779f77")]
 
 // アセンブリのバージョン情報は次の 4 つの値で構成されています:
 //

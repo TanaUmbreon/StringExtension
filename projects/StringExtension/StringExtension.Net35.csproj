@@ -4,61 +4,66 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{66466A54-FA40-4296-8946-035CF8158FF6}</ProjectGuid>
+    <ProjectGuid>{61F15B4F-9CE5-447B-9000-9FA7B061EB05}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>StringExtension.NetStd13.Tests</RootNamespace>
-    <AssemblyName>StringExtension.NetStd13.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <RootNamespace>StringExtension</RootNamespace>
+    <AssemblyName>StringExtension</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\Debug\netframework3.5\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\netframework3.5\StringExtension.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>bin\Release\netframework3.5\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\netframework3.5\StringExtension.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=3.9.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.3.9.0\lib\net45\nunit.framework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\tests\StringExtensionTest.cs">
-      <Link>StringExtensionTest.cs</Link>
+    <Compile Include="..\..\src\StringExtension.cs">
+      <Link>StringExtension.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\StringExtensionVB.NetStd13\StringExtensionVB.NetStd13.vbproj">
-      <Project>{f7aae4ca-949d-4854-94f8-85ffcf9d5a6b}</Project>
-      <Name>StringExtensionVB.NetStd13</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>:: .NET Frameworkのプロジェクトが同じフォルダーにあるとビルド警告が出る問題の対策
+set target=$(ProjectDir)obj\project.assets.json
+if exist "%25target%25" (
+del /q "%25target%25"
+)</PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>:: リリースビルドの場合は配布用のバイナリとしてコピーする
+:: $(TargetDir)は末尾に\がありrobocopyでエラーとなるのでトリムする
+set copyFrom=$(TargetDir)
+set copyFrom=%25copyFrom:~0,-1%25
+set copyTo=$(SolutionDir)..\StringExtension-bin-x.x.x\NetFramework 3.5
+if "$(ConfigurationName)" == "Release" (
+robocopy "%25copyFrom%25" "%25copyTo%25" /mir /r:1 /w:1 /xf *.tmp
+)
+:: robocopyはコード7以下だと正常終了だがVSでエラー判定となるので強制的にコード0にする
+exit /b 0
+</PostBuildEvent>
+  </PropertyGroup>
 </Project>
