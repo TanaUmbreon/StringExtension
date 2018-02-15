@@ -47,9 +47,9 @@ namespace StringExtension
         /// </returns>
         public static string MidB(this string value, int startIndex, int length)
         {
-            if (value == null) { throw new ArgumentNullException(nameof(value)); }
-            if (startIndex < 0) { throw new ArgumentOutOfRangeException(nameof(startIndex), "開始位置を 0 未満にすることはできません。"); }
-            if (length < 0) { throw new ArgumentOutOfRangeException(nameof(length), "長さを 0 未満にすることはできません。"); }
+            if (value == null) { throw new ArgumentNullException("value"); }
+            if (startIndex < 0) { throw new ArgumentOutOfRangeException("startIndex", "開始位置を 0 未満にすることはできません。"); }
+            if (length < 0) { throw new ArgumentOutOfRangeException("length", "長さを 0 未満にすることはできません。"); }
 
             // 空文字が確定している場合は無駄な処理をさせないようすぐ返す
             if (length == 0) { return ""; }
@@ -80,8 +80,8 @@ namespace StringExtension
             // MidB(string, startIndex, length)のオーバーロードは呼び出さず独立したメソッドにしている。
             // 末尾の全角文字の途中を抽出するリスクがなく実装がシンプルになる為
 
-            if (value == null) { throw new ArgumentNullException(nameof(value)); }
-            if (startIndex < 0) { throw new ArgumentOutOfRangeException(nameof(startIndex), "開始位置を 0 未満にすることはできません。"); }
+            if (value == null) { throw new ArgumentNullException("value"); }
+            if (startIndex < 0) { throw new ArgumentOutOfRangeException("startIndex", "開始位置を 0 未満にすることはできません。"); }
 
             // 開始位置が文字列の長さを超えた場合は空文字確定なのですぐに返す
             var bytes = ShiftJis.GetBytes(value);
@@ -105,8 +105,8 @@ namespace StringExtension
         /// </returns>
         public static string LeftB(this string value, int length)
         {
-            if (value == null) { throw new ArgumentNullException(nameof(value)); }
-            if (length < 0) { throw new ArgumentOutOfRangeException(nameof(length), "長さを 0 未満にすることはできません。"); }
+            if (value == null) { throw new ArgumentNullException("value"); }
+            if (length < 0) { throw new ArgumentOutOfRangeException("length", "長さを 0 未満にすることはできません。"); }
 
             // 指定した長さが元の文字列の長さ以上になる場合は元の文字列そのものなのですぐに返す
             var bytes = ShiftJis.GetBytes(value);
@@ -134,8 +134,8 @@ namespace StringExtension
         /// </returns>
         public static string RightB(this string value, int length)
         {
-            if (value == null) { throw new ArgumentNullException(nameof(value)); }
-            if (length < 0) { throw new ArgumentOutOfRangeException(nameof(length), "長さを 0 未満にすることはできません。"); }
+            if (value == null) { throw new ArgumentNullException("value"); }
+            if (length < 0) { throw new ArgumentOutOfRangeException("length", "長さを 0 未満にすることはできません。"); }
 
             // 空文字が確定している場合は無駄な処理をさせないようすぐ返す
             if (length == 0) { return ""; }
@@ -164,8 +164,8 @@ namespace StringExtension
         /// </returns>
         public static string PadLeftB(this string value, int totalWidth, char paddingChar)
         {
-            if (value == null) { throw new ArgumentNullException(nameof(value)); }
-            if (totalWidth < 0) { throw new ArgumentOutOfRangeException(nameof(totalWidth), "長さを 0 未満にすることはできません。"); }
+            if (value == null) { throw new ArgumentNullException("value"); }
+            if (totalWidth < 0) { throw new ArgumentOutOfRangeException("totalWidth", "長さを 0 未満にすることはできません。"); }
 
             // 指定した長さが元の文字列の長さ以下になる場合は元の文字列そのものなのですぐに返す
             var bytes = ShiftJis.GetBytes(value);
@@ -191,7 +191,10 @@ namespace StringExtension
         /// <paramref name="totalWidth"/> の長さになるまで左側に空白が埋め込まれ、右寄せされた文字列。
         /// <paramref name="totalWidth"/> が元の文字列の長さより短い場合は、元の文字列と等しい文字列。
         /// </returns>
-        public static string PadLeftB(this string value, int totalWidth) => PadLeftB(value, totalWidth, ' ');
+        public static string PadLeftB(this string value, int totalWidth)
+        {
+            return PadLeftB(value, totalWidth, ' ');
+        }
 
         #endregion
 
@@ -210,8 +213,8 @@ namespace StringExtension
         /// </returns>
         public static string PadRightB(this string value, int totalWidth, char paddingChar)
         {
-            if (value == null) { throw new ArgumentNullException(nameof(value)); }
-            if (totalWidth < 0) { throw new ArgumentOutOfRangeException(nameof(totalWidth), "長さを 0 未満にすることはできません。"); }
+            if (value == null) { throw new ArgumentNullException("value"); }
+            if (totalWidth < 0) { throw new ArgumentOutOfRangeException("totalWidth", "長さを 0 未満にすることはできません。"); }
 
             var bytes = ShiftJis.GetBytes(value);
             if (totalWidth <= bytes.Length) { return value; }
@@ -233,7 +236,10 @@ namespace StringExtension
         /// <paramref name="totalWidth"/> の長さになるまで右側に空白が埋め込まれ、左寄せされた文字列。
         /// <paramref name="totalWidth"/> が元の文字列の長さより短い場合は、元の文字列と等しい文字列。
         /// </returns>
-        public static string PadRightB(this string value, int totalWidth) => PadRightB(value, totalWidth, ' ');
+        public static string PadRightB(this string value, int totalWidth)
+        {
+            return PadRightB(value, totalWidth, ' ');
+        }
 
         #endregion
 
@@ -268,7 +274,10 @@ namespace StringExtension
         /// <paramref name="totalWidth"/> が元の文字列の長さより短い場合は、元の文字列の右端から
         /// <paramref name="totalWidth"/> までの部分文字列。
         /// </returns>
-        public static string FixLeftB(this string value, int totalWidth) => FixLeftB(value, totalWidth, ' ');
+        public static string FixLeftB(this string value, int totalWidth)
+        {
+            return FixLeftB(value, totalWidth, ' ');
+        }
 
         #endregion
 
@@ -303,7 +312,10 @@ namespace StringExtension
         /// <paramref name="totalWidth"/> が元の文字列の長さより短い場合は、元の文字列の左端から
         /// <paramref name="totalWidth"/> までの部分文字列。
         /// </returns>
-        public static string FixRightB(this string value, int totalWidth) => FixRightB(value, totalWidth, ' ');
+        public static string FixRightB(this string value, int totalWidth)
+        {
+            return FixRightB(value, totalWidth, ' ');
+        }
 
         #endregion
     }
